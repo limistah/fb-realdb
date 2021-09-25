@@ -46,6 +46,7 @@ export const registerUser = (userObj: {
         uid: userCredential.user.uid,
         ...user,
       };
+      // @ts-ignore
       delete update.password;
       return set(ref(db, "users/" + userCredential.user.uid), update).then(
         () => userCredential.user

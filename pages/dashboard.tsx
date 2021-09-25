@@ -8,9 +8,13 @@ import {
 
 function Dashboard() {
   const [todoTitle, setTodoTitle] = useState("");
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({
+    firstName: "",
+  });
 
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useState<
+    Array<{ key: string; title: string; done: boolean }>
+  >([]);
 
   useEffect(() => {
     console.log("Hey, fetch user from firebase");
@@ -27,6 +31,7 @@ function Dashboard() {
         }
       }
       setTodoList(
+        // @ts-ignore
         _todos.sort((a, b) => (parseInt(a.key) < parseInt(b.key) ? 1 : 0))
       );
     });

@@ -21,6 +21,7 @@ function SignupForm() {
   };
 
   const canSubmit = (): boolean => {
+    // @ts-ignore
     return (
       formState.firstName &&
       formState.lastName &&
@@ -40,13 +41,15 @@ function SignupForm() {
 
     registerUser(formState)
       .then((res) => {
-        console.log(res);
+        // @ts-ignore
         if (!res.error) {
           setFormMessage("Signup successful. Continue to login");
         } else {
+          // @ts-ignore
           if (res.errorCode === "auth/email-already-in-use") {
             setFormMessage("Email already in use, try logging in.");
           } else {
+            // @ts-ignore
             setFormMessage(res.message);
           }
         }

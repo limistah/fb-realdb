@@ -34,18 +34,22 @@ function LoginForm() {
 
     loginUser(formState.email, formState.password)
       .then((res) => {
+        // @ts-ignore
         if (!res.error) {
           setFormMessage("Signup successful. Continue to login");
+          // @ts-ignore
           localStorage.setItem("uid", res.uid);
           router.push("/dashboard");
         } else {
           if (
             ["auth/user-not-found", "auth/wrong-password"].includes(
+              // @ts-ignore
               res.errorCode
             )
           ) {
             setFormMessage("Invalid credentials, try again");
           } else {
+            // @ts-ignore
             setFormMessage(res.message);
           }
         }
